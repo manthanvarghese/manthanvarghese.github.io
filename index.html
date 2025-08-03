@@ -99,7 +99,7 @@
             font-size: 14px;
         }
 
-        /* Hero Section - Massive Text */
+        /* Hero Section - Single Line Text */
         .hero-section {
             height: 100vh;
             display: flex;
@@ -108,30 +108,46 @@
             position: relative;
             background: #f8f8f8;
             padding-top: 80px;
+            overflow: hidden;
         }
 
         .hero-title {
-            font-size: clamp(8rem, 20vw, 25rem);
+            font-size: clamp(6rem, 15vw, 20rem);
             font-weight: 900;
             color: #000;
             text-transform: uppercase;
             letter-spacing: -0.05em;
-            line-height: 0.85;
+            line-height: 1;
             text-align: center;
             font-family: 'Times New Roman', 'Times', serif;
             user-select: none;
+            white-space: nowrap;
         }
 
-        /* Featured Image Section - Like The Swaddle */
+        /* Peek of next section */
+        .hero-peek {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: 1;
+        }
+
+        /* Featured Image Section - Adjusted for peek effect */
         .featured-section {
             background: #fff;
             padding: 0;
+            margin-top: -30vh;
+            position: relative;
+            z-index: 2;
         }
 
         .featured-image {
             width: 100%;
-            height: 60vh;
-            background: url('images/music-collage.jpg') center/cover no-repeat;
+            height: 80vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -203,12 +219,26 @@
         .about-image {
             width: 100%;
             height: 500px;
-            background: #f0f0f0;
+            background: url('images/about-me.jpg') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 4rem;
-            color: #ccc;
+            color: #fff;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.05);
+            border-radius: 15px;
         }
 
         .about-text {
@@ -231,22 +261,33 @@
         .project-card {
             background: #fff;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .project-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
         }
 
         .project-image {
             width: 100%;
             height: 250px;
-            background: #f0f0f0;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3rem;
-            color: #999;
+            color: #fff;
+        }
+
+        .project-card:nth-child(2) .project-image {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .project-card:nth-child(3) .project-image {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
         }
 
         .project-content {
@@ -274,34 +315,6 @@
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .skill-card {
-            text-align: center;
-            padding: 40px 20px;
-            background: #f8f8f8;
-        }
-
-        .skill-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #000;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .skill-list {
-            color: #666;
-            line-height: 1.8;
-            font-size: 1rem;
         }
 
         /* Contact Section */
@@ -334,11 +347,14 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            border-radius: 5px;
         }
 
         .contact-link:hover {
             background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         /* Footer */
@@ -358,7 +374,20 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero-title {
-                font-size: clamp(4rem, 15vw, 8rem);
+                font-size: clamp(3rem, 12vw, 6rem);
+                white-space: normal;
+            }
+            
+            .hero-peek {
+                height: 25vh;
+            }
+            
+            .featured-section {
+                margin-top: -25vh;
+            }
+            
+            .featured-image {
+                height: 70vh;
             }
             
             .main-nav {
@@ -381,30 +410,39 @@
             .section-title {
                 font-size: 2rem;
             }
+            
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-link {
+                width: 200px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Top Navigation - Exact replica of The Swaddle -->
+    <!-- Top Navigation -->
     <nav class="top-nav">
         <div class="nav-container">
             <a href="#" class="logo">ALMST CRTN</a>
             <ul class="main-nav">
                 <li><a href="#about">ABOUT</a></li>
                 <li><a href="#work">WORK</a></li>
-                <li><a href="#skills">SKILLS</a></li>
                 <li><a href="#contact">CONTACT</a></li>
             </ul>
             <button class="menu-button">MENU</button>
         </div>
     </nav>
 
-    <!-- Hero Section - Massive Text like "THE SWDL" -->
+    <!-- Hero Section -->
     <section class="hero-section">
-        <h1 class="hero-title">ALMST<br>CRTN</h1>
+        <h1 class="hero-title">ALMST CRTN</h1>
+        <div class="hero-peek"></div>
     </section>
 
-    <!-- Featured Section - Like The Swaddle's image section -->
+    <!-- Featured Section -->
     <section class="featured-section">
         <div class="featured-image">
             <div class="featured-content">
@@ -414,12 +452,12 @@
         </div>
     </section>
 
-    <!-- Content Sections -->
+    <!-- About Section -->
     <section id="about" class="content-section">
         <div class="container">
             <h2 class="section-title">ABOUT</h2>
             <div class="about-grid">
-                <div class="about-image">📸</div>
+                <div class="about-image"></div>
                 <div class="about-text">
                     <p>Hey there, thanks for dropping by! This is my little corner of the internet—a platform where I showcase the random thoughts that pop into my head and explore whatever catches my curiosity.</p>
                     
@@ -431,6 +469,7 @@
         </div>
     </section>
 
+    <!-- Projects Section -->
     <section id="work" class="content-section">
         <div class="container">
             <h2 class="section-title">FEATURED WORK</h2>
@@ -465,37 +504,17 @@
         </div>
     </section>
 
-    <section id="skills" class="content-section">
-        <div class="container">
-            <h2 class="section-title">EXPERTISE</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3 class="skill-title">FRONTEND</h3>
-                    <p class="skill-list">HTML5, CSS3, JavaScript<br>React, Vue.js, TypeScript<br>Responsive Design, UI/UX</p>
-                </div>
-                
-                <div class="skill-card">
-                    <h3 class="skill-title">BACKEND</h3>
-                    <p class="skill-list">Node.js, Python, Express<br>RESTful APIs, GraphQL<br>Database Design, Security</p>
-                </div>
-                
-                <div class="skill-card">
-                    <h3 class="skill-title">TOOLS & PLATFORMS</h3>
-                    <p class="skill-list">Git, VS Code, Figma<br>AWS, Docker, CI/CD<br>MongoDB, PostgreSQL</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!-- Contact Section -->
     <section id="contact" class="content-section">
         <div class="container">
             <h2 class="section-title">LET'S CONNECT</h2>
             <div class="contact-content">
                 <p class="contact-text">Ready to create something extraordinary together? I'm always excited to collaborate on projects that push boundaries and make a real impact.</p>
                 <div class="contact-links">
-                    <a href="mailto:your.email@example.com" class="contact-link">EMAIL</a>
-                    <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">LINKEDIN</a>
-                    <a href="https://github.com/yourusername" class="contact-link" target="_blank">GITHUB</a>
+                    <a href="mailto:manthanvarghese@gmail.com" class="contact-link">EMAIL</a>
+                    <a href="https://www.linkedin.com/in/manthan-varghese" class="contact-link" target="_blank">LINKEDIN</a>
+                    <a href="https://www.instagram.com/manthan.va" class="contact-link" target="_blank">INSTAGRAM</a>
+                    <a href="https://github.com/almostcertain" class="contact-link" target="_blank">GITHUB</a>
                 </div>
             </div>
         </div>
@@ -532,6 +551,29 @@
                 nav.style.backgroundColor = '#ffffff';
                 nav.style.backdropFilter = 'none';
             }
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all project cards and content sections
+        document.querySelectorAll('.project-card, .content-section').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
         });
     </script>
 </body>
