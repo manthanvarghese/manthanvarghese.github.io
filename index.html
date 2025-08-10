@@ -278,7 +278,9 @@
         .about-image {
             width: 100%;
             height: 500px;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: 
+                linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)),
+                url('images/about-me.jpg') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -290,10 +292,14 @@
             overflow: hidden;
         }
 
+        /* Fallback if image doesn't load */
         .about-image::before {
             content: '👨‍💻';
-            position: relative;
-            z-index: 2;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
             animation: float 3s ease-in-out infinite;
             filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
         }
@@ -309,6 +315,7 @@
                 radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
             z-index: 1;
+            pointer-events: none;
         }
 
         @keyframes float {
