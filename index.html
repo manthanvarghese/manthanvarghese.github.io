@@ -1,802 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manthan Varghese - Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #000;
-            background-color: #f8f8f8;
-            overflow-x: hidden;
-        }
-
-        /* Top Navigation Bar */
-        .top-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: #ffffff;
-            z-index: 1000;
-            padding: 15px 0;
-            border-bottom: 1px solid #e0e0e0;
-            transition: all 0.3s ease;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            font-weight: 700;
-            color: #000;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-        }
-
-        .logo::before {
-            content: "■";
-            margin-right: 8px;
-            font-size: 12px;
-        }
-
-        .main-nav {
-            display: flex;
-            list-style: none;
-            gap: 40px;
-        }
-
-        .main-nav a {
-            text-decoration: none;
-            color: #000;
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: opacity 0.3s ease;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-        }
-
-        .main-nav a:hover {
-            opacity: 0.6;
-        }
-
-        .menu-button {
-            background: #000;
-            color: #fff;
-            border: none;
-            padding: 10px 15px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .menu-button:hover {
-            background: #333;
-        }
-
-        .menu-button::before {
-            content: "⌕";
-            font-size: 14px;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background: #f8f8f8;
-            padding-top: 80px;
-            overflow: hidden;
-        }
-
-        .hero-title {
-            font-size: clamp(6rem, 15vw, 20rem);
-            font-weight: 900;
-            color: #000;
-            text-transform: uppercase;
-            letter-spacing: -0.05em;
-            line-height: 1;
-            text-align: center;
-            font-family: 'Times New Roman', 'Times', serif;
-            user-select: none;
-            white-space: nowrap;
-            animation: fadeInUp 1.5s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Peek of next section */
-        .hero-peek {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 30vh;
-            background: 
-                linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-                url('images/music-collage.jpg') center/cover no-repeat;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8rem;
-            color: rgba(255,255,255,0.3);
-        }
-
-        /* Fallback if image doesn't load */
-        .hero-peek::before {
-            content: '🎵';
-            animation: float 3s ease-in-out infinite;
-            z-index: -1;
-        }
-
-        /* Featured Section */
-        .featured-section {
-            background: #fff;
-            padding: 0;
-            margin-top: -30vh;
-            position: relative;
-            z-index: 2;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: 80vh;
-            background: 
-                linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-                url('images/music-collage.jpg') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Fallback if image doesn't load */
-        .featured-image::before {
-            content: '🎸🎧🎵🎤🎹';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 6rem;
-            opacity: 0.2;
-            white-space: nowrap;
-            animation: musicFloat 5s ease-in-out infinite;
-            z-index: -1;
-        }
-
-        @keyframes musicFloat {
-            0%, 100% { 
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.2;
-            }
-            50% { 
-                transform: translate(-50%, -50%) scale(1.1);
-                opacity: 0.3;
-            }
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .featured-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            color: #fff;
-            padding: 80px 30px 30px;
-        }
-
-        .featured-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.1;
-        }
-
-        .featured-subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
-        }
-
-        /* Content Sections */
-        .content-section {
-            background: #fff;
-            padding: 80px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 30px;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            font-weight: 900;
-            text-align: center;
-            margin-bottom: 60px;
-            color: #000;
-            text-transform: uppercase;
-            letter-spacing: -0.02em;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-        }
-
-        /* About Section */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 60px;
-            align-items: start;
-        }
-
-        .about-image {
-            width: 100%;
-            height: 500px;
-            background: 
-                linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)),
-                url('images/about-me.jpg') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8rem;
-            color: #fff;
-            border-radius: 15px;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            overflow: hidden;
-        }
-
-        /* Fallback if image doesn't load */
-        .about-image::before {
-            content: '👨‍💻';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: -1;
-            animation: float 3s ease-in-out infinite;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-        }
-
-        .about-image::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .about-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: #333;
-        }
-
-        .about-text p {
-            margin-bottom: 2rem;
-        }
-
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-        }
-
-        .project-card {
-            background: #fff;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: #fff;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .project-card:nth-child(2) .project-image {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-        }
-
-        .project-card:nth-child(3) .project-image {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-        }
-
-        .project-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255,255,255,0.1);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-
-        .project-image::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 80px;
-            height: 80px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            transition: transform 0.4s ease;
-        }
-
-        .project-card:hover .project-image::after {
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .project-card:hover .project-image::before {
-            transform: translateX(100%);
-        }
-
-        .project-content {
-            padding: 30px;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #000;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .project-description {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .project-tech {
-            font-size: 0.9rem;
-            color: #999;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Contact Section */
-        .contact-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .contact-text {
-            font-size: 1.5rem;
-            color: #333;
-            margin-bottom: 50px;
-            line-height: 1.6;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            display: inline-block;
-            padding: 15px 30px;
-            background: #000;
-            color: #fff;
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            border-radius: 5px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .contact-link:hover::before {
-            left: 100%;
-        }
-
-        .contact-link:hover {
-            background: #333;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        /* Footer */
-        footer {
-            background: #000;
-            color: #fff;
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        footer p {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: clamp(3rem, 12vw, 6rem);
-                white-space: normal;
-            }
-            
-            .hero-peek {
-                height: 25vh;
-            }
-            
-            .featured-section {
-                margin-top: -25vh;
-            }
-            
-            .featured-image {
-                height: 70vh;
-            }
-            
-            .main-nav {
-                display: none;
-            }
-            
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .featured-title {
-                font-size: 2rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .contact-link {
-                width: 200px;
-            }
-
-            .nav-container {
-                padding: 0 20px;
-            }
-
-            .container {
-                padding: 0 20px;
-            }
-        }
-
-        /* Loading Animation */
-        .loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #f8f8f8;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-
-        .loading.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #000;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ALMST CRTN — Portfolio</title>
+  <style>
+    /* Base Reset & Typography */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Georgia', serif; color:#111; background:#fff; line-height:1.6; }
+
+    /* Navigation */
+    .top-nav {
+      position:fixed; top:0; width:100%; background:#fff; z-index:1000;
+      padding:1rem 2rem; border-bottom:1px solid #eee;
+      font-family: sans-serif;
+    }
+    .logo { font-size:1.5rem; font-weight:900; letter-spacing:0.2em; }
+    .main-nav { float:right; display:flex; gap:1.5rem; text-transform:uppercase; }
+    .main-nav a { text-decoration:none; color:#111; font-size:0.9rem; }
+
+    /* Hero */
+    .hero-section {
+      height:100vh; display:flex; align-items:center; justify-content:center;
+      background:#f2f2f2; position:relative; padding-top:80px;
+    }
+    .hero-title {
+      font-size:clamp(4rem, 10vw, 10rem); font-weight:900; line-height:1;
+      margin:0 auto; text-transform:uppercase;
+      background:rgba(255,255,255,0.8); padding:0.5em 1em; backdrop-filter:blur(4px);
+    }
+
+    /* Featured Card */
+    .featured-card {
+      position:relative; margin:-10vh auto 0; max-width:800px;
+      background:#fafafa; box-shadow:0 10px 30px rgba(0,0,0,0.1);
+      padding:2rem;
+      transform:translateY(-5vh);
+    }
+    .featured-card h2 { font-size:2rem; margin-bottom:1rem; }
+    .featured-card p { font-size:1rem; color:#444; }
+
+    /* Sections & Footer */
+    .container { max-width:900px; margin:5rem auto; padding:0 1.5rem; }
+    .section-title {
+      font-family:sans-serif; font-size:2rem; letter-spacing:0.1em; text-transform:uppercase;
+      margin-bottom:2rem; text-align:center;
+    }
+    footer { text-align:center; padding:2rem 0; font-size:0.8rem; color:#888; }
+  </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading" id="loading">
-        <div class="spinner"></div>
+  <nav class="top-nav">
+    <span class="logo">ALMST CRTN</span>
+    <div class="main-nav">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
     </div>
+  </nav>
 
-    <!-- Top Navigation -->
-    <nav class="top-nav">
-        <div class="nav-container">
-            <a href="#" class="logo">ALMST CRTN</a>
-            <ul class="main-nav">
-                <li><a href="#about">ABOUT</a></li>
-                <li><a href="#work">WORK</a></li>
-                <li><a href="#contact">CONTACT</a></li>
-            </ul>
-            <button class="menu-button">MENU</button>
-        </div>
-    </nav>
+  <section class="hero-section">
+    <h1 class="hero-title">ALMST CRTN</h1>
+  </section>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <h1 class="hero-title">ALMST CRTN</h1>
-        <div class="hero-peek"></div>
-    </section>
+  <div class="featured-card">
+    <h2>Chaos, Creativity & Coffee</h2>
+    <p>Where random thoughts collide with late-night inspiration, fueled by music, design, and the endless pursuit of “what if?”.</p>
+  </div>
 
-    <!-- Featured Section -->
-    <section class="featured-section">
-        <div class="featured-image">
-            <div class="featured-content">
-                <h2 class="featured-title">Chaos, Creativity & Coffee</h2>
-                <p class="featured-subtitle">Where random thoughts collide with late-night inspiration, fueled by an unhealthy obsession with music, design, and the endless pursuit of "what if?"</p>
-            </div>
-        </div>
-    </section>
+  <section id="about" class="container">
+    <h2 class="section-title">About</h2>
+    <p>Your “about me” content goes here—refined, light, and editorial in tone.</p>
+  </section>
 
-    <!-- About Section -->
-    <section id="about" class="content-section">
-        <div class="container">
-            <h2 class="section-title">ABOUT</h2>
-            <div class="about-grid">
-                <div class="about-image"></div>
-                <div class="about-text">
-                    <p>Hey there, thanks for dropping by! This is my little corner of the internet—a platform where I showcase the random thoughts that pop into my head and explore whatever catches my curiosity.</p>
-                    
-                    <p>I'm driven by the urge to create, experiment, and push the boundaries of what's possible. Whether it's through code, design, or wild ideas that keep me up at night, this space is where I document the journey of turning "almost certain" concepts into reality.</p>
-                    
-                    <p>From digital experiments to creative projects, everything here represents my ongoing quest to explore as much as possible and share the discoveries along the way. Welcome to the adventure!</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <section id="work" class="container">
+    <h2 class="section-title">Featured Work</h2>
+    <!-- Project cards -->
+  </section>
 
-    <!-- Projects Section -->
-    <section id="work" class="content-section">
-        <div class="container">
-            <h2 class="section-title">FEATURED WORK</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">🛍️</div>
-                    <div class="project-content">
-                        <h3 class="project-title">E-COMMERCE PLATFORM</h3>
-                        <p class="project-description">A cutting-edge e-commerce solution featuring real-time inventory management, seamless payment processing, and an intuitive user experience that drives conversions.</p>
-                        <p class="project-tech">REACT • NODE.JS • MONGODB • STRIPE</p>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">📊</div>
-                    <div class="project-content">
-                        <h3 class="project-title">DATA VISUALIZATION</h3>
-                        <p class="project-description">Interactive dashboard that transforms complex datasets into actionable insights, helping businesses make data-driven decisions with confidence.</p>
-                        <p class="project-tech">VUE.JS • D3.JS • PYTHON • POSTGRESQL</p>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">📱</div>
-                    <div class="project-content">
-                        <h3 class="project-title">MOBILE PRODUCTIVITY</h3>
-                        <p class="project-description">Collaborative task management application with real-time synchronization, designed to help teams stay organized and achieve their goals efficiently.</p>
-                        <p class="project-tech">REACT NATIVE • EXPRESS.JS • SOCKET.IO</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <section id="contact" class="container">
+    <h2 class="section-title">Let’s Connect</h2>
+    <!-- Contact links -->
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="content-section">
-        <div class="container">
-            <h2 class="section-title">LET'S CONNECT</h2>
-            <div class="contact-content">
-                <p class="contact-text">Ready to create something extraordinary together? I'm always excited to collaborate on projects that push boundaries and make a real impact.</p>
-                <div class="contact-links">
-                    <a href="mailto:manthanvarghese@gmail.com" class="contact-link">EMAIL</a>
-                    <a href="https://www.linkedin.com/in/manthan-varghese" class="contact-link" target="_blank" rel="noopener">LINKEDIN</a>
-                    <a href="https://www.instagram.com/manthan.va" class="contact-link" target="_blank" rel="noopener">INSTAGRAM</a>
-                    <a href="https://github.com/manthanvarghese" class="contact-link" target="_blank" rel="noopener">GITHUB</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 ALMST CRTN. ALL RIGHTS RESERVED.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Loading screen
-        window.addEventListener('load', function() {
-            const loading = document.getElementById('loading');
-            setTimeout(() => {
-                loading.classList.add('hidden');
-            }, 500);
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('.top-nav');
-            if (window.scrollY > 100) {
-                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-                nav.style.backdropFilter = 'blur(10px)';
-            } else {
-                nav.style.backgroundColor = '#ffffff';
-                nav.style.backdropFilter = 'none';
-            }
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements for scroll animations
-        document.addEventListener('DOMContentLoaded', function() {
-            const animatedElements = document.querySelectorAll('.project-card, .about-text, .contact-content');
-            animatedElements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(el);
-            });
-        });
-
-        // Parallax effect for hero section
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const heroTitle = document.querySelector('.hero-title');
-            const heroSection = document.querySelector('.hero-section');
-            
-            if (heroTitle && scrolled < heroSection.offsetHeight) {
-                heroTitle.style.transform = `translateY(${scrolled * 0.3}px)`;
-                heroTitle.style.opacity = 1 - (scrolled / heroSection.offsetHeight);
-            }
-        });
-
-        // Menu button functionality (placeholder)
-        document.querySelector('.menu-button').addEventListener('click', function() {
-            // Add mobile menu functionality here if needed
-            console.log('Menu clicked');
-        });
-
-        // Add some interactivity to project cards
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.querySelector('.project-image').style.transform = 'scale(1.1)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.querySelector('.project-image').style.transform = 'scale(1)';
-            });
-        });
-    </script>
+  <footer>&copy; 2025 ALMST CRTN. All rights reserved.</footer>
 </body>
 </html>
