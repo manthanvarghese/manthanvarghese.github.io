@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Portfolio</title>
+    <title>Manthan Varghese - Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -19,7 +19,7 @@
             overflow-x: hidden;
         }
 
-        /* Top Navigation Bar - Exact replica */
+        /* Top Navigation Bar */
         .top-nav {
             position: fixed;
             top: 0;
@@ -29,6 +29,7 @@
             z-index: 1000;
             padding: 15px 0;
             border-bottom: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
         }
 
         .nav-container {
@@ -92,6 +93,11 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-button:hover {
+            background: #333;
         }
 
         .menu-button::before {
@@ -99,7 +105,7 @@
             font-size: 14px;
         }
 
-        /* Hero Section - Single Line Text */
+        /* Hero Section */
         .hero-section {
             height: 100vh;
             display: flex;
@@ -122,6 +128,18 @@
             font-family: 'Times New Roman', 'Times', serif;
             user-select: none;
             white-space: nowrap;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Peek of next section */
@@ -131,11 +149,13 @@
             left: 0;
             right: 0;
             height: 30vh;
-            background: url('/images/music-collage.jpg') center/cover no-repeat;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
             z-index: 1;
         }
 
-        /* Featured Image Section - Adjusted for peek effect */
+        /* Featured Section */
         .featured-section {
             background: #fff;
             padding: 0;
@@ -147,12 +167,25 @@
         .featured-image {
             width: 100%;
             height: 80vh;
-            background: url('/images/music-collage.jpg') center/cover no-repeat;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
+        }
+
+        .featured-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="music" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="30" r="8" fill="white" opacity="0.1"/><rect x="40" y="20" width="4" height="40" fill="white" opacity="0.15"/><path d="M60 25 Q70 20 80 25 Q70 30 60 25" fill="white" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23music)"/></svg>') repeat;
+            opacity: 0.3;
         }
 
         @keyframes gradientShift {
@@ -219,7 +252,7 @@
         .about-image {
             width: 100%;
             height: 500px;
-            background: url('https://manthanvarghese.github.io/images/about-me.jpg') center/cover no-repeat;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -228,28 +261,19 @@
             border-radius: 15px;
             position: relative;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-
-        /* Fallback styling if image doesn't load */
-        .about-image::after {
-            content: '📸';
-            position: absolute;
-            font-size: 4rem;
-            color: #ccc;
-            z-index: 1;
+            overflow: hidden;
         }
 
         .about-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            border-radius: 15px;
-            z-index: 0;
+            content: '👨‍💻';
+            position: relative;
+            z-index: 2;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
         .about-text {
@@ -291,6 +315,8 @@
             justify-content: center;
             font-size: 3rem;
             color: #fff;
+            position: relative;
+            overflow: hidden;
         }
 
         .project-card:nth-child(2) .project-image {
@@ -299,6 +325,22 @@
 
         .project-card:nth-child(3) .project-image {
             background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.1);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover .project-image::before {
+            transform: translateX(100%);
         }
 
         .project-content {
@@ -360,6 +402,23 @@
             letter-spacing: 1px;
             transition: all 0.3s ease;
             border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .contact-link:hover::before {
+            left: 100%;
         }
 
         .contact-link:hover {
@@ -430,10 +489,57 @@
             .contact-link {
                 width: 200px;
             }
+
+            .nav-container {
+                padding: 0 20px;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f8f8f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #000;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
     <!-- Top Navigation -->
     <nav class="top-nav">
         <div class="nav-container">
@@ -523,9 +629,9 @@
                 <p class="contact-text">Ready to create something extraordinary together? I'm always excited to collaborate on projects that push boundaries and make a real impact.</p>
                 <div class="contact-links">
                     <a href="mailto:manthanvarghese@gmail.com" class="contact-link">EMAIL</a>
-                    <a href="https://www.linkedin.com/in/manthan-varghese" class="contact-link" target="_blank">LINKEDIN</a>
-                    <a href="https://www.instagram.com/manthan.va" class="contact-link" target="_blank">INSTAGRAM</a>
-                    <a href="https://github.com/almostcertain" class="contact-link" target="_blank">GITHUB</a>
+                    <a href="https://www.linkedin.com/in/manthan-varghese" class="contact-link" target="_blank" rel="noopener">LINKEDIN</a>
+                    <a href="https://www.instagram.com/manthan.va" class="contact-link" target="_blank" rel="noopener">INSTAGRAM</a>
+                    <a href="https://github.com/manthanvarghese" class="contact-link" target="_blank" rel="noopener">GITHUB</a>
                 </div>
             </div>
         </div>
@@ -538,6 +644,14 @@
     </footer>
 
     <script>
+        // Loading screen
+        window.addEventListener('load', function() {
+            const loading = document.getElementById('loading');
+            setTimeout(() => {
+                loading.classList.add('hidden');
+            }, 500);
+        });
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -564,7 +678,7 @@
             }
         });
 
-        // Add scroll animations
+        // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -579,12 +693,44 @@
             });
         }, observerOptions);
 
-        // Observe all project cards and content sections
-        document.querySelectorAll('.project-card, .content-section').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
+        // Observe elements for scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.project-card, .about-text, .contact-content');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const heroTitle = document.querySelector('.hero-title');
+            const heroSection = document.querySelector('.hero-section');
+            
+            if (heroTitle && scrolled < heroSection.offsetHeight) {
+                heroTitle.style.transform = `translateY(${scrolled * 0.3}px)`;
+                heroTitle.style.opacity = 1 - (scrolled / heroSection.offsetHeight);
+            }
+        });
+
+        // Menu button functionality (placeholder)
+        document.querySelector('.menu-button').addEventListener('click', function() {
+            // Add mobile menu functionality here if needed
+            console.log('Menu clicked');
+        });
+
+        // Add some interactivity to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.querySelector('.project-image').style.transform = 'scale(1.1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.querySelector('.project-image').style.transform = 'scale(1)';
+            });
         });
     </script>
 </body>
